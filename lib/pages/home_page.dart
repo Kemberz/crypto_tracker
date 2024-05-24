@@ -14,21 +14,37 @@ class _HomePageState extends State<HomePage> {
 
   //coigecko key
   static String apiKey = "CG-yCpNyYJHsY8wJJtdkZxfn1np";
+  String coins = "bitcoin%2C%20ethereum";
+  String currency = "usd";
+  StringBuffer result = StringBuffer();
 
   List cryptoList = [
-    ["BTC"],
-    ["ETH"]
+    ["bitcoin"],
+    ["ethereum"]
   ];
 
+
+  //makes API call with desired currencies
   Future getCryptos() async {
+    for (int i = 0; i < cryptoList.length; i++) {
+      result.write(cryptoList[i]);
+      if (i < cryptoList.length - 1) {
+        result.write('%2C%20'); // Append %2C%20 between items
+      }
+    }
+    coins = result.toString();
+
     var response = await http.get(
-      Uri.parse("https://pro-api.coingecko.com/api/v3/"), 
+      Uri.parse("https://api.coingecko.com/api/v3/coins/markets?vs_currency=$currency&ids=$coins"), 
       headers: {
-      'x-cg-pro-api-key': apiKey,
+      "x-cg-api-key": apiKey,
       "Accept": "application/json",
       },
     );
     print(response.body);
+
+    //call function to decode json
+    //final welcome = welcomeFromJson(jsonString);
   }
 
   void editList() {
@@ -37,7 +53,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    getCryptos();
+    //getCryptos();
+
     return Scaffold(
       
       appBar: AppBar(
