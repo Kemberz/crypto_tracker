@@ -4,10 +4,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class coinTile extends StatelessWidget {
   final String coinName;
   Function(BuildContext)? notificationFunction;
+  final String cryptoIcon;
 
   coinTile({super.key,
     required this.coinName,
-     this.notificationFunction
+    this.notificationFunction,
+    this.cryptoIcon = 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400',
   });
 
   @override
@@ -33,7 +35,25 @@ class coinTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.grey[700],
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey[700]!,
+                      offset: const Offset(2, 2),
+                    )
+                  ]),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Image.network(cryptoIcon),
+                  ),
+              ),
               //task name
               Text(
                 "BTC"
