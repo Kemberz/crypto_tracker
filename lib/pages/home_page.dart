@@ -1,3 +1,5 @@
+import 'package:crypto_tracker/util/coin_tile.dart';
+import 'package:crypto_tracker/util/json_decode.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -42,6 +44,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
     print(response.body);
+    welcomeFromJson(response.body);
 
     //call function to decode json
     //final welcome = welcomeFromJson(jsonString);
@@ -68,6 +71,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView.builder(
         itemCount: cryptoList.length,
         itemBuilder: (context, index) {
+          return coinTile(coinName: "btc");
         },
       )
     );
