@@ -23,7 +23,7 @@ class coinTile extends StatelessWidget {
             SlidableAction(
               onPressed: notificationFunction,
               icon: Icons.edit,
-              backgroundColor: Colors.purple.shade800,
+              backgroundColor: const Color.fromARGB(255, 72, 7, 112),
               borderRadius: BorderRadius.circular(12),
             )
           ],
@@ -31,33 +31,62 @@ class coinTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(15.0),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 190, 143, 188),
-            borderRadius: BorderRadius.circular(10),
+            color: Color.fromARGB(255, 71, 59, 71),
+            borderRadius: BorderRadius.circular(10)
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.grey[700],
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey[700]!,
-                      offset: const Offset(2, 2),
-                    )
-                  ]),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Image.network(cryptoIcon),
+              Row(
+                children: [
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[700],
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey[700]!,
+                            offset: const Offset(2, 2),
+                          )
+                      ]),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4),
+                          //COIN ICON
+                          child: Image.network(cryptoIcon),
+                        ),
+                    ),
                   ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //COIN NAME
+                    Text("Bitcoin", style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),),
+                    //COIN 24H CHANGE
+                    Text("10%", style: TextStyle(fontSize: 16, color: Colors.grey[400], fontWeight: FontWeight.w600),),
+                  ],
+                ),
+                ],
               ),
+              const SizedBox(width: 20,),
+              Column(
+                children: [
+                  //24H HIGH
+                  Text("H\$"+"66.678", style: TextStyle(fontSize: 12, color: Colors.grey[400], fontWeight: FontWeight.w600),),
+                    //24H LOW
+                  Text("L\$""64.786", style: TextStyle(fontSize: 12, color: Colors.grey[400], fontWeight: FontWeight.w600),),
+                ],
+              ),
+              Column(children: [
+                //COIN PRICE
+                Text("\$"+"66.000", style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),),
+              ],),
+
               //task name
-              Text(
-                "BTC"
-              ),
             ],
           ),
         ),

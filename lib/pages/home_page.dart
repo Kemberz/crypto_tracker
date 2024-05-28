@@ -1,7 +1,6 @@
 import 'package:crypto_tracker/util/coin_tile.dart';
 import 'package:crypto_tracker/util/json_decode.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage ({super.key});
@@ -27,28 +26,6 @@ class _HomePageState extends State<HomePage> {
 
 
   //makes API call with desired currencies
-  Future getCryptos() async {
-    for (int i = 0; i < cryptoList.length; i++) {
-      result.write(cryptoList[i]);
-      if (i < cryptoList.length - 1) {
-        result.write('%2C%20'); // Append %2C%20 between items
-      }
-    }
-    coins = result.toString();
-
-    var response = await http.get(
-      Uri.parse("https://api.coingecko.com/api/v3/coins/markets?vs_currency=$currency&ids=$coins"), 
-      headers: {
-      "x-cg-api-key": apiKey,
-      "Accept": "application/json",
-      },
-    );
-    print(response.body);
-    welcomeFromJson(response.body);
-
-    //call function to decode json
-    //final welcome = welcomeFromJson(jsonString);
-  }
 
   void editList() {
 
@@ -59,8 +36,9 @@ class _HomePageState extends State<HomePage> {
     //getCryptos();
 
     return Scaffold(
-      
+      backgroundColor: Color.fromARGB(255, 77, 55, 72),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 54, 39, 51),
         title: Text("Crypto Tracker"),
         elevation: 0,
       ),
