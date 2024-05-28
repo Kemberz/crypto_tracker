@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 
 class GetApi extends GetxController {
-  static String apiKey = "CG-yCpNyYJHsY8wJJtdkZxfn1np";
+  static String apiKey = "";
   String coins = "bitcoin%2C%20ethereum";
   String currency = "usd";
   StringBuffer result = StringBuffer();

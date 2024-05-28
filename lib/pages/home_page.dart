@@ -14,7 +14,6 @@ class _HomePageState extends State<HomePage> {
   //static String apiKey = "0710785d-895a-4417-9c89-ee6aafe2ae35";
 
   //coigecko key
-  static String apiKey = "CG-yCpNyYJHsY8wJJtdkZxfn1np";
   String coins = "bitcoin%2C%20ethereum";
   String currency = "usd";
   StringBuffer result = StringBuffer();
