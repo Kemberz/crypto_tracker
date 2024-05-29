@@ -5,34 +5,46 @@ import 'package:http/http.dart' as http;
 
 class GetApi extends GetxController {
   static String apiKey = "";
-  String coins = "bitcoin%2C%20ethereum";
+  String coinToCall = "bitcoin%2C%20ethereum";
   String currency = "usd";
   StringBuffer result = StringBuffer();
     List cryptoList = [
     ["bitcoin"],
     ["ethereum"]
   ];
-  List<Welcome> coinsList= <Welcome>[];
+  RxList<Welcome> coinsList= <Welcome>[].obs;
+  RxBool isLoading = true.obs;
 
-    Future getCryptos() async {
+  @override
+  onInit(){
+    super.onInit();
+    getCryptos();
+  }
+
+  getCryptos() async {
     for (int i = 0; i < cryptoList.length; i++) {
       result.write(cryptoList[i]);
       if (i < cryptoList.length - 1) {
         result.write('%2C%20'); // Append %2C%20 between items
       }
     }
-    coins = result.toString();
+    //coins = result.toString();
+    try{
+      isLoading(true);
+      var response = await http.get(
+        Uri.parse("https://api.coingecko.com/api/v3/coins/markets?vs_currency=$currency&ids=$coinToCall"), 
+        headers: {
+          "x-cg-api-key": apiKey,
+          "Accept": "application/json",
+        });
+      welcomeFromJson(response.body);
 
-    var response = await http.get(
-      Uri.parse("https://api.coingecko.com/api/v3/coins/markets?vs_currency=$currency&ids=$coins"), 
-      headers: {
-      "x-cg-api-key": apiKey,
-      "Accept": "application/json",
-      },
-    );
-    print(response.body);
-    welcomeFromJson(response.body);
+      List<Welcome> coins = welcomeFromJson(response.body);
+      coinsList.value = coins;
 
+    } finally {
+      isLoading(false);
+    };
     //call function to decode json
     //final welcome = welcomeFromJson(jsonString);
   }

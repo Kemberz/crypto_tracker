@@ -10,12 +10,10 @@ class Welcome {
     String name;
     String image;
     double currentPrice;
-    int? high24H;
-    int? low24H;
+    double? high24H;
+    double? low24H;
     double? priceChange24H;
     double? priceChangePercentage24H;
-    int? circulatingSupply;
-    int? totalSupply;
     double? athChangePercentage;
     double? atl;
     double? atlChangePercentage;
@@ -32,8 +30,6 @@ class Welcome {
         this.low24H,
         this.priceChange24H,
         this.priceChangePercentage24H,
-        this.circulatingSupply,
-        this.totalSupply,
         this.athChangePercentage,
         this.atl,
         this.atlChangePercentage,
@@ -47,12 +43,10 @@ class Welcome {
         name: json["name"],
         image: json["image"],
         currentPrice: json["current_price"]?.toDouble(),
-        high24H: json["high_24h"],
-        low24H: json["low_24h"],
+        high24H: json["high_24h"].toDouble(),
+        low24H: json["low_24h"].toDouble(),
         priceChange24H: json["price_change_24h"]?.toDouble(),
         priceChangePercentage24H: json["price_change_percentage_24h"]?.toDouble(),
-        circulatingSupply: json["circulating_supply"],
-        totalSupply: json["total_supply"],
         athChangePercentage: json["ath_change_percentage"]?.toDouble(),
         atl: json["atl"]?.toDouble(),
         atlChangePercentage: json["atl_change_percentage"]?.toDouble(),
@@ -70,8 +64,6 @@ class Welcome {
         "low_24h": low24H,
         "price_change_24h": priceChange24H,
         "price_change_percentage_24h": priceChangePercentage24H,
-        "circulating_supply": circulatingSupply,
-        "total_supply": totalSupply,
         "ath_change_percentage": athChangePercentage,
         "atl": atl,
         "atl_change_percentage": atlChangePercentage,
