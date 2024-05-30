@@ -1,10 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:crypto_tracker/util/api_controller.dart';
 import 'package:get/get.dart';
-import 'package:crypto_tracker/pages/home_page.dart';
 
 class coinTile extends StatelessWidget {
   final String coinName;
@@ -72,7 +69,7 @@ class coinTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //COIN NAME
-                    Text(controller.coinsList.name, style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),),
+                    Text("BTC", style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),),
                     //COIN 24H CHANGE
                     Text("10%", style: TextStyle(fontSize: 16, color: Colors.grey[400], fontWeight: FontWeight.w600),),
                   ],
